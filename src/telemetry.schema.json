@@ -2,11 +2,15 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SitecoreAI CLI Telemetry",
   "type": "object",
-  "required": ["schema_version", "event", "command"],
+  "required": ["schema_version", "nonce", "event", "command"],
   "properties": {
     "schema_version": {
       "type": "string",
       "description": "Telemetry schema version."
+    },
+    "nonce": {
+      "type": "string",
+      "description": "Random nonce to reduce replay noise."
     },
     "event": {
       "type": "string",
