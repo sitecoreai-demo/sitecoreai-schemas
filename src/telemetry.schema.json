@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SitecoreAI CLI Telemetry",
   "type": "object",
-  "required": ["schema_version", "nonce", "event", "command"],
+  "required": ["schema_version", "nonce", "event", "command", "v"],
   "properties": {
     "schema_version": {
       "type": "string",
@@ -22,21 +22,26 @@
       "description": "Command name (flags removed, sensitive values redacted)."
     },
     "durationMs": {
-      "type": "string",
+      "type": "integer",
       "description": "Duration in milliseconds."
     },
     "error": {
-      "type": "string",
-      "description": "Error flag ('1') when an error occurred."
+      "type": "boolean",
+      "description": "Error flag when an error occurred."
     },
     "v": {
       "type": "string",
       "description": "CLI version."
     },
     "ci": {
-      "type": "string",
-      "description": "CI flag ('1') when running in CI."
+      "type": "boolean",
+      "description": "CI flag when running in CI."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional metadata for future expansion.",
+      "additionalProperties": true
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }
