@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.sitecoreai.dev/v1/telemetry.schema.json",
   "title": "SitecoreAI CLI Telemetry",
   "type": "object",
   "required": ["schema_version", "nonce", "event", "command", "v"],

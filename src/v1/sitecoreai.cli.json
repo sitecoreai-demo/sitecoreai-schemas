@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://schemas.sitecoreai.dev/v1/sitecoreai.cli.json",
     "title": "SitecoreAI CLI Root Configuration",
     "type": "object",
     "description": "Defines the Sitecore AI CLI root configuration",

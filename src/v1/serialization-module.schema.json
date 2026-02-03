@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://schemas.sitecoreai.dev/v1/serialization-module.schema.json",
     "title": "SerializationModuleFile",
     "description": "Sitecore serialization module definition file schema",
     "allOf": [
