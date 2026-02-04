@@ -12,13 +12,24 @@
       "$schema": {
         "type": "string"
       },
+      "defaultEnvProfile": {
+        "type": "string",
+        "description": "Default environment profile to fetch or push data to"
+      },
+      "envProfiles": {
+        "type": "object",
+        "description": "Named environment profiles used by this CLI",
+        "additionalProperties": {
+          "$ref": "#/definitions/EnvironmentConfiguration"
+        }
+      },
       "defaultEndpoint": {
         "type": "string",
-        "description": "Default Sitecore instance to fetch or push data to"
+        "description": "Deprecated. Use defaultEnvProfile instead."
       },
       "endpoints": {
         "type": "object",
-        "description": "Named Sitecore endpoints used by this CLI",
+        "description": "Deprecated. Use envProfiles instead.",
         "additionalProperties": {
           "$ref": "#/definitions/EnvironmentConfiguration"
         }
@@ -107,11 +118,11 @@
           "telemetryEnabled": {
             "type": "boolean",
             "description": "Determines if telemetry is enabled in cli.",
-            "default": true
+            "default": false
           },
           "cacheAuthenticationToken": {
             "type": "boolean",
-            "description": "Determines if CLI should cache authentication token.",
+            "description": "Determines if the CLI should cache CM access/refresh tokens in the OS keychain.",
             "default": true
           },
           "versionComparisonEnabled": {
@@ -129,15 +140,16 @@
       },
       "EnvironmentConfiguration": {
         "type": "object",
-        "description": "Configures named Sitecore API endpoint",
+        "description": "Configures a named Sitecore environment profile",
         "additionalProperties": false,
-        "required": [
-          "host"
-        ],
         "properties": {
+          "name": {
+            "type": "string",
+            "description": "Optional display name for the environment"
+          },
           "ref": {
             "type": "string",
-            "description": "Name of the environment to depends on"
+            "description": "Name of the environment to inherit from"
           },
           "organizationId": {
             "type": "string",
@@ -167,7 +179,7 @@
           },
           "authority": {
             "type": "string",
-            "description": "Base URL to authentication server (e.g. https://auth.sitecorecloud.io)",
+            "description": "Base URL to SitecoreAI identity authority (e.g. https://auth.sitecorecloud.io)",
             "format": "uri",
             "minLength": 1
           },
@@ -176,19 +188,19 @@
               "boolean",
               "null"
             ],
-            "description": "If true, use client credentials (client id and secret) instead of device (username/password). This is good for CI."
+            "description": "If true, use client credentials (client ID and secret) instead of interactive device login. Recommended for CI."
           },
           "accessToken": {
             "type": "string",
-            "description": "OAuth access token for this endpoint (set manually if needed)"
+            "description": "OAuth access token for this endpoint. Cached in the OS keychain when enabled."
           },
           "refreshToken": {
             "type": "string",
-            "description": "OAuth refresh token for this endpoint (set manually if needed)"
+            "description": "OAuth refresh token for this endpoint. Cached in the OS keychain when enabled."
           },
           "refreshTokenParameters": {
             "type": "object",
-            "description": "OAuth parameters for this endpoint (set manually if needed)",
+            "description": "OAuth refresh parameters for this endpoint (set manually if needed)",
             "additionalProperties": {
               "type": "string"
             }
@@ -211,7 +223,7 @@
           },
           "deployToken": {
             "type": "string",
-            "description": "XM Cloud Deploy API access token"
+            "description": "SitecoreAI access token (Deploy + CM/admin scopes). Cached in the OS keychain."
           },
           "deployTokenExpiresIn": {
             "type": [
@@ -229,14 +241,20 @@
             "description": "Last time the deploy token was updated",
             "format": "date-time"
           },
+          "editingHostEnvironmentIds": {
+            "type": "array",
+            "description": "Editing host environment IDs associated with this CM environment",
+            "items": {
+              "type": "string"
+            }
+          },
           "clientId": {
             "type": "string",
-            "description": "OAuth client ID for this endpoint",
-            "default": "SitecoreCLI"
+            "description": "OAuth client ID for this endpoint"
           },
           "clientSecret": {
             "type": "string",
-            "description": "OAuth client secret for this endpoint (when useClientCredentials is true; ignored for device auth mode)"
+            "description": "OAuth client secret for this endpoint (when useClientCredentials is true). Prefer environment variables."
           },
           "variables": {
             "type": "object",
