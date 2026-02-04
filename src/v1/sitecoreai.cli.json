@@ -23,17 +23,6 @@
           "$ref": "#/definitions/EnvironmentConfiguration"
         }
       },
-      "defaultEndpoint": {
-        "type": "string",
-        "description": "Deprecated. Use defaultEnvProfile instead."
-      },
-      "endpoints": {
-        "type": "object",
-        "description": "Deprecated. Use envProfiles instead.",
-        "additionalProperties": {
-          "$ref": "#/definitions/EnvironmentConfiguration"
-        }
-      },
       "modules": {
         "type": "array",
         "description": "Sitecore module file resolution globs",
