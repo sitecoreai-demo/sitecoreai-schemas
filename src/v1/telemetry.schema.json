@@ -38,6 +38,10 @@
       "type": "boolean",
       "description": "CI flag when running in CI."
     },
+    "region": {
+      "type": "string",
+      "description": "Server-derived region (e.g., US-CA) from CDN headers."
+    },
     "metadata": {
       "type": "object",
       "description": "Optional metadata for future expansion.",
