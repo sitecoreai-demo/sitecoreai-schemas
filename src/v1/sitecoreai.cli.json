@@ -123,6 +123,8 @@
             "type": "integer",
             "description": "Determines timeout for Sitecore Api client.",
             "format": "int32",
+            "minimum": 1,
+            "maximum": 60,
             "default": 5
           }
         }
@@ -155,6 +157,14 @@
           "environmentId": {
             "type": "string",
             "description": "Sitecore environment ID"
+          },
+          "environmentType": {
+            "type": "string",
+            "description": "Environment type (cm or eh)",
+            "enum": [
+              "cm",
+              "eh"
+            ]
           },
           "allowWrite": {
             "type": "boolean",
